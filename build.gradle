@@ -1,0 +1,67 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.6'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'org.openapi.generator' version '5.3.1'
+    id 'org.liquibase.gradle' version '2.1.1'
+}
+group = 'ru.neoflex'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation ('org.springframework.boot:spring-boot-starter-data-jpa') {
+        exclude module: "logback-classic"
+    }
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+        exclude module: "logback-classic"
+    }
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.openapitools:openapi-generator-gradle-plugin:6.2.1'
+    implementation 'org.liquibase:liquibase-core:4.9.1'
+    implementation 'org.liquibase:liquibase-maven-plugin:4.9.1'
+    implementation 'com.h2database:h2:2.1.210'
+    implementation 'org.postgresql:postgresql'
+    implementation 'com.vladmihalcea:hibernate-types-52:2.20.0'
+    implementation 'org.springframework.cloud:spring-cloud-starter-feign:1.4.7.RELEASE'
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$rootDir/src/main/resources/open-api/deal-dto.yaml".toString()
+    apiPackage = "ru.neoflex.deal.api"
+    modelPackage = "ru.neoflex.deal.model"
+    typeMappings = [
+            "double": "java.math.BigDecimal",
+            "date": "java.time.LocalDate",
+            "date-time": "java.time.LocalDateTime",
+            "Date": "LocalDateTime"
+    ]
+    importMappings = [
+            "java.util.Date":  "java.time.LocalDateTime"
+    ]
+    configOptions = [
+            "interfaceOnly": "true",
+            "useBeanValidation": "true",
+            "library": "spring-mvc",
+            "dateLibrary": "java11",
+            "java11": "true",
+            "additionalModelTypeAnnotations": "@lombok.AllArgsConstructor; @lombok.Builder; @lombok.NoArgsConstructor"
+    ]
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

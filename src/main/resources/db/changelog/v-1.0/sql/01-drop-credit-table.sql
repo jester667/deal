@@ -1,0 +1,9 @@
+ALTER TABLE IF EXISTS credit
+    DROP IF EXISTS CONSTRAINT credit_id_pk
+GO
+
+DROP TABLE IF EXISTS credit
+GO
+
+DROP SEQUENCE IF EXISTS credit_id_seq
+GO
