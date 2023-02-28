@@ -1,6 +1,7 @@
 package ru.neoflex.deal.persist.model;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ import java.util.List;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Accessors(chain = true)
 public class Application {
     @Id
