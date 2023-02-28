@@ -1,0 +1,9 @@
+ALTER TABLE IF EXISTS client
+    DROP IF EXISTS CONSTRAINT client_id_pk
+GO
+
+DROP TABLE IF EXISTS client
+GO
+
+DROP SEQUENCE IF EXISTS client_id_seq
+GO

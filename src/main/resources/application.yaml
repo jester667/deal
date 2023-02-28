@@ -1,0 +1,31 @@
+server:
+  port: 8086
+
+spring:
+  datasource:
+#    url: jdbc:h2:mem:testdb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password:
+    url: jdbc:postgresql://localhost:5432/simpleDB
+    username: postgres
+    password: a123456789
+  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQL81Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        security: DEBUG
+
+client:
+  conveyor:
+    endpoint: 'http://127.0.0.1:8085/conveyor'
