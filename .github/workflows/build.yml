@@ -36,4 +36,4 @@ jobs:
         with:
           java-version: 1.11
       - name: Gradle build
-        run: gradle build -b=build.gradle
+        run: gradle build -b=build.gradle --debug
