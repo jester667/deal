@@ -7,7 +7,7 @@ spring:
 #    driver-class-name: org.h2.Driver
 #    username: sa
 #    password:
-    url: jdbc:postgresql://localhost:5432/simpleDB
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: a123456789
   jpa:
