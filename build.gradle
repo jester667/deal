@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.6'
+    id 'org.springframework.boot' version '2.7.11'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'org.openapi.generator' version '5.3.1'
     id 'org.liquibase.gradle' version '2.1.1'
@@ -21,15 +21,16 @@ configurations {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    implementation ('org.springframework.boot:spring-boot-starter-data-jpa')
-    implementation ('org.springframework.boot:spring-boot-starter-web')
+    implementation ('org.springframework.boot:spring-boot-starter-data-jpa:2.7.11')
+    implementation ('org.springframework.boot:spring-boot-starter-web:2.7.11')
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.11'
     implementation 'org.openapitools:openapi-generator-gradle-plugin:6.2.1'
     implementation 'org.liquibase:liquibase-core:4.9.1'
     implementation 'org.liquibase:liquibase-maven-plugin:4.9.1'
@@ -37,6 +38,9 @@ dependencies {
     implementation 'org.postgresql:postgresql'
     implementation 'com.vladmihalcea:hibernate-types-52:2.20.0'
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.1.1")
+    implementation 'org.springframework.boot:spring-boot-starter-aop:2.7.11'
+    implementation("org.springframework.kafka:spring-kafka")
+    implementation 'ru.neoflex:audit-producer:1.0.0'
 }
 
 openApiGenerate {
